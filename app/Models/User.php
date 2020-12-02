@@ -40,4 +40,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all of the puchases that belong to the book.
+     */
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'book_purchases')
+                    ->using(BookPurchase::class);
+    }
 }

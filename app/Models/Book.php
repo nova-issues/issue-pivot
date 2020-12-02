@@ -12,9 +12,11 @@ class Book extends Model
     /**
      * Get all of the puchases that belong to the book.
      */
-    public function purchases()
+    public function users()
     {
         return $this->belongsToMany(User::class, 'book_purchases')
-                    ->using(BookPurchase::class);
+                    ->using(BookPurchase::class)
+                    ->withPivot('price', 'license_key')
+                    ->withTimestamps();
     }
 }

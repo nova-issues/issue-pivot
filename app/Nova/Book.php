@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -48,7 +49,8 @@ class Book extends Resource
             Text::make('Title')->readonly(),
             Boolean::make('Active'),
 
-            BelongsToMany::make('Purchases', 'purchases', User::class),
+            BelongsToMany::make('Purchasers', 'users', User::class)
+                ->fields(new Fields\BookPurchase()),
         ];
     }
 

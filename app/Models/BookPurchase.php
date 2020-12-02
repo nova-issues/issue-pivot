@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Str;
 
 class BookPurchase extends Pivot
 {
@@ -28,4 +29,16 @@ class BookPurchase extends Pivot
     protected $casts = [
         'active' => 'boolean',
     ];
+
+    /**
+     * Perform any actions required after the model boots.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($model) {
+            $model->license_key = (string) Str::uuid();
+        });
+    }
 }

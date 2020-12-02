@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
@@ -61,6 +62,9 @@ class User extends Resource
                 ->creationRules('required', 'string', 'min:8')
                 ->updateRules('nullable', 'string', 'min:8')
                 ->help('Password should be a string (<strong>8 characters</strong>)'),
+
+            BelongsToMany::make('Purchased Books', 'books', Book::class)
+                ->fields(new Fields\BookPurchase()),
         ];
     }
 

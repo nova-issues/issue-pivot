@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class BookPurchase extends Pivot
 {
+    use SoftDeletes;
+
     /**
      * The table associated with the model.
      *

@@ -20,6 +20,7 @@ class CreateBookPurchasesTable extends Migration
             $table->unsignedInteger('price');
             $table->string('license_key');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index(['book_id', 'user_id']);
         });

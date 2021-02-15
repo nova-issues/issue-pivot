@@ -47,6 +47,8 @@ class User extends Authenticatable
     public function books()
     {
         return $this->belongsToMany(Book::class, 'book_purchases')
-                    ->using(BookPurchase::class);
+                    ->using(BookPurchase::class)
+                    ->withPivot('id', 'price', 'license_key')
+                    ->withTimestamps();
     }
 }

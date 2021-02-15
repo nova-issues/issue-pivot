@@ -16,7 +16,7 @@ class Book extends Model
     {
         return $this->belongsToMany(User::class, 'book_purchases')
                     ->using(BookPurchase::class)
-                    ->withPivot('price', 'license_key')
+                    ->withPivot('id', 'price', 'license_key')
                     ->withTimestamps();
     }
 }
